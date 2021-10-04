@@ -1,0 +1,31 @@
+import React from 'react';
+
+import { fetchMfList } from '../utils/api';
+
+
+const MutualFundsListing = ({ history }) => {
+
+
+  return (
+    <div className="mf-list-container">
+      <p>Mutual Funds</p>
+      { list && 
+        <form >
+          <label htmlFor="mutual-fund">Choose a mutualfund:</label>
+          <select id="mutual-fund" name="mutual-fund">
+      { list && list.map(({ schemeCode, schemeName }) => 
+          <option 
+            value={schemeName}
+            onClick={() => history.push(`/mf/${schemeCode}`)}
+          >
+              {schemeName}
+          </option>
+      )}
+          </select>
+      </form>
+     }      
+    </div>
+  );
+};
+
+export default MutualFundsListing;

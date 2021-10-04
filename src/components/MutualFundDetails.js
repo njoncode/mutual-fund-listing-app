@@ -1,28 +1,52 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import { fetchMfDetails } from '../utils/api';
+import '../styles/mutualfundDetails.scss';
+
+import { fetchMutualFundsDetailsStartAction } from '../redux/mutualFund/mutualFundActions';
+import { selectMutualFundDetails } from '../redux/mutualFund/mutualFundSelectors';
 
 
-const MutualFundDetails = () => {
+const MutualFundDetails = ({ fetchMutualFundsDetailsStartDispatch, mutualFundDetails }) => {
 
-  const [details, setDetails] = React.useState(null);
 
   const { schemeCode } = useParams();
 
   React.useEffect(() => {
-      fetchMfDetails(schemeCode)
-        .then(res => {
-          setDetails(res.data)
-        })
-        .catch(err => console.error(err))
-    }, [])
+
+    fetchMutualFundsDetailsStartDispatch(schemeCode);
+
+    }, []);
+
+  console.log('mutualFundDetails: ', mutualFundDetails);
+
+
+  const { fund_house, scheme_category, scheme_code, scheme_name, scheme_type } = mutualFundDetails || {};
 
   return (
     <div className="mf-details-container">
-      {details && <p>{details.meta.fund_house}</p>}
+      { mutualFundDetails && 
+        <div className='mf-details'>
+          <p><span>Scheme Name: </span>{scheme_name}</p>
+          <p><span>Scheme Type: </span>{scheme_type}</p>
+          <p><span>Scheme Code: </span>{scheme_code}</p>
+          <p><span>Scheme Category: </span>{scheme_category}</p>
+          <p><span>Fund House: </span>{fund_house}</p>
+      </div>
+      }
     </div>
   );
 };
 
-export default MutualFundDetails;
+const mapStateToProps = createStructuredSelector({
+  mutualFundDetails: selectMutualFundDetails
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchMutualFundsDetailsStartDispatch: (data) => dispatch(fetchMutualFundsDetailsStartAction(data))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MutualFundDetails);
