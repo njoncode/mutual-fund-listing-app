@@ -11,6 +11,7 @@ import { selectMutualFundDetails } from '../redux/mutualFund/mutualFundSelectors
 
 const MutualFundDetails = ({ fetchMutualFundsDetailsStartDispatch, mutualFundDetails }) => {
 
+  
 
   const { schemeCode } = useParams();
 

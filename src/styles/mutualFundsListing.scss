@@ -1,0 +1,42 @@
+.mf-list-container {
+  margin: 40px;
+}
+
+.mf-overview-container {
+  .mf-heading {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin: 40px;
+  }
+}
+
+.mf-overview-details {
+  margin: 50px auto;
+  width: 80vw;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-gap: 20px 15px;
+
+  :last-child {
+    grid-column: span 2;
+    justify-self: center;
+  }
+
+  .mf-overview-items {
+    background: rgb(41, 175, 175);
+    box-shadow: 2px 2px 6px rgb(58, 179, 179), -2px -2px 6px rgb(58, 179, 179);
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    span {
+      font-weight: 700;
+      margin-right: 5px;
+    }
+  }
+}

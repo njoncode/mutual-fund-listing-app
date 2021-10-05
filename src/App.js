@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { store } from './redux/store';
 
-import MutualFundsList from './components/MutualFundsList';
+import MutualFundsListing from './components/MutualFundsListing';
 import MutualFundDetails from './components/MutualFundDetails';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
     <div className="app">
       <Provider store={store}>
         <Router>
-          <Route exact path='/' component={MutualFundsList}/>
+          <Route exact path='/' component={MutualFundsListing}/>
           <Route path='/mf/:schemeCode' component={MutualFundDetails}/>
         </Router>
       </Provider>
