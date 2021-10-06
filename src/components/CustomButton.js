@@ -14,11 +14,10 @@ const CustomButton = ({ children, btnKnowMore }) => (
     {children}
   </button>
 );
+
 export default CustomButton;
 
 CustomButton.propTypes = {
   children: PropTypes.string.isRequired,
-  btnTransferEth: PropTypes.bool.isRequired,
+  btnKnowMore: PropTypes.bool.isRequired,
 };
-
-// className={`${btn-transfer-eth ? 'btn-transfer-eth' : ''} custom-button`}
