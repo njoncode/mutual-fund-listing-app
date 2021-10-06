@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 
 import '../styles/mutualFundsListing.scss';
 
+
 import { selectMutualFundDetails, selectMutualFundList } from '../redux/mutualFund/mutualFundSelectors';
 import MutualFundsList from './MutualFundsList';
 import MutualFundDetailsOverview from './MutualFundDetailsOverview';
@@ -11,7 +12,7 @@ import MutualFundDetailsOverview from './MutualFundDetailsOverview';
 const MutualFundsListing = ({ match }) => {
 
   return (
-    <div className="mf-list-container">
+    <div className="mf-listing-container">
       <MutualFundsList />
       <MutualFundDetailsOverview />
     </div>

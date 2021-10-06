@@ -5,6 +5,8 @@ import { useHistory } from 'react-router';
 
 import '../styles/mutualFundsList.scss';
 
+import mfImage from '../images/images.jpg';
+
 import { fetchMutualFundsListStartAction } from '../redux/mutualFund/mutualFundActions';
 import { selectMutualFundList } from '../redux/mutualFund/mutualFundSelectors';
 
@@ -22,7 +24,9 @@ const MutualFundsList = ({ fetchMutualFundsStartDispatch, mutualFundList }) => {
 
   return (
     <div className="mf-list-container">
-      {mutualFundList && 
+        <img className='mf-image' src={mfImage}/>
+      {
+        mutualFundList && 
         <form className='mf-list-scrolldown'>
           <label htmlFor="mutual-fund" className='mf-list-label'>Choose a mutualfund:</label>
           <select id="mutual-fund" name="mutual-fund">
@@ -37,7 +41,8 @@ const MutualFundsList = ({ fetchMutualFundsStartDispatch, mutualFundList }) => {
           </select>
       </form>
      }
-    </div>
+     </div>
+    // </div>
   );
 };
 
