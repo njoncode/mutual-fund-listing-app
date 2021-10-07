@@ -22,8 +22,8 @@ const App = () => {
           <Router history={history}>
             <Switch>
               <Route exact path='/' component={MutualFundsListing}/>
-              <Route exact path='/mf/:schemeCode' component={MutualFundDetails}/>
-              <Route exact path='/sign-in' component={SignInAndSignUp} />
+              <Route path='/mf/:schemeCode' component={MutualFundDetails}/>
+              <Route path='/sign-in' component={SignInAndSignUp} />
             </Switch>
           </Router>
           </ConnectedRouter>
