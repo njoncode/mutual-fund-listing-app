@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose }  from "redux";
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
+import { persistStore } from "redux-persist";
 
 import history from '../utils/history';
 import rootReducer from "./rootReducer";
@@ -22,5 +23,7 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga); 
+
+export const persistor = persistStore(store);
 
  

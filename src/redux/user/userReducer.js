@@ -9,7 +9,6 @@ const INTITAL_STATE = {
 const userReducer = (state = INTITAL_STATE, action) => {
     switch(action.type) {
         case userConstants.SIGN_UP_SUCCESS:
-        case userConstants.SIGN_IN_SUCCESS:
             return { 
                 ...state,
                 currentUser: action.payload,
@@ -22,6 +21,12 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 ...state,
                 error: action.payload
             };
+        case userConstants.SIGN_IN_SUCCESS:
+        return { 
+            ...state,
+            currentUser: action.payload,
+            error: null
+        };
         default:
             return state;
     }
