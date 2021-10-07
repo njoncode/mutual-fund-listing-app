@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 
 import '../styles/signIn.scss';
 
+import { signInStartAction } from '../redux/user/userActions';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 
-const SignIn = () => {
+const SignIn = ({ emailSignInStartDispatch }) => {
    
     const [userCredentials, setCredentials] = useState({ 
         email: '', 
@@ -25,6 +26,7 @@ const SignIn = () => {
     const handleSubmit = async event => {
         event.preventDefault();
 
+        emailSignInStartDispatch(email, password)
        
     };
 
@@ -59,7 +61,7 @@ const SignIn = () => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    // emailSignInStartDispatch: (email, password) => dispatch(emailSignInStartAction({ email, password }))
+    emailSignInStartDispatch: (email, password) => dispatch(signInStartAction({ email, password }))
 })
 
 export default connect(null, mapDispatchToProps)(SignIn); 
