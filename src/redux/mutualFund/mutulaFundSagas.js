@@ -7,8 +7,6 @@ import { fetchMutualFundsListSuccessAction, fetchMutualFundsFailureAction, fetch
 
 
 export function* fetchMutualFundsListAsync() {
-    yield console.log('I am fired!');
-
     try {
         const mutualFundsListMap = yield call(fetchMfList);
         yield put(fetchMutualFundsListSuccessAction(mutualFundsListMap.slice(0, 20)));
@@ -18,12 +16,8 @@ export function* fetchMutualFundsListAsync() {
 };
 
 export function* fetchMutualFundsDetailsAsync( { payload } ) {
-    yield console.log('I am fired!');
-    console.log('payload: ', payload);
-
     try {
         const mutualFundsDetailsMap = yield call(fetchMfDetails, payload);
-        console.log('mutualFundsDetailsMap: ', mutualFundsDetailsMap)
         yield put(fetchMutualFundsDetailsSuccessAction(mutualFundsDetailsMap.meta));
     } catch (error) {
         yield put(fetchMutualFundsFailureAction(error.message));

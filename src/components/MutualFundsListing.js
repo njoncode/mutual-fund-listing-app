@@ -9,7 +9,7 @@ import { selectMutualFundDetails, selectMutualFundList } from '../redux/mutualFu
 import MutualFundsList from './MutualFundsList';
 import MutualFundDetailsOverview from './MutualFundDetailsOverview';
 
-const MutualFundsListing = ({ match }) => {
+const MutualFundsListing = () => {
 
   return (
     <div className="mf-listing-container">

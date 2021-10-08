@@ -9,7 +9,6 @@ import '../styles/header.scss';
 import { signOutStartAction } from '../redux/user/userActions';
 import { selectCurrentUser } from '../redux/user/userSelectors';
 import mfImage from '../images/mutual-fund.png';
-import CustomButton from './CustomButton'
 
 const Header = ({ currentUser, signOutStartDispatch }) => {
 

@@ -14,13 +14,9 @@ const MutualFundDetails = ({ fetchMutualFundsDetailsStartDispatch, mutualFundDet
 
   const { schemeCode } = useParams();
 
-
   React.useEffect(() => {
     fetchMutualFundsDetailsStartDispatch(schemeCode);
     }, []);
-
-  console.log('mutualFundDetails: ', mutualFundDetails);
-
 
   const { fund_house, scheme_category, scheme_code, scheme_name, scheme_type } = mutualFundDetails || {};
 

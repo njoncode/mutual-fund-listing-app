@@ -19,5 +19,5 @@ export default CustomButton;
 
 CustomButton.propTypes = {
   children: PropTypes.string.isRequired,
-  btnKnowMore: PropTypes.bool.isRequired,
+  btnKnowMore: PropTypes.bool,
 };

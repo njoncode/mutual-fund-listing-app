@@ -19,8 +19,9 @@ const MutualFundDetailsOverview = ({ mutualFundList, isMutualFundDetailsFetching
         <div className='mf-overview-container'>
           <p className='mf-heading'>Mutual Funds</p>
           <div className='mf-overview-content-container'>
-            {mutualFundList.splice(0,5).map(({ schemeCode, schemeName }) => 
+            {mutualFundList.splice(0,5).map(({ schemeCode, schemeName }, index) => 
             <div 
+              key={`${index}{schemeCode}`}
               className='mf-overview-content'
               onClick={() => history.push(`${match.path}mf/${schemeCode}`)}
             >
