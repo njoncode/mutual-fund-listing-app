@@ -4,15 +4,13 @@ import { createStructuredSelector } from 'reselect';
 import { useHistory } from 'react-router';
 
 import '../styles/mutualFundsList.scss';
-
 import mfImage from '../images/images.jpg';
 
 import { fetchMutualFundsListStartAction } from '../redux/mutualFund/mutualFundActions';
-import { selectMutualFundList } from '../redux/mutualFund/mutualFundSelectors';
+import { selectMutualFundList, selectIsMutualFundDetailsFetching } from '../redux/mutualFund/mutualFundSelectors';
+import Spinner from './Spinner';
 
-
-
-const MutualFundsList = ({ fetchMutualFundsStartDispatch, mutualFundList }) => {
+const MutualFundsList = ({ fetchMutualFundsStartDispatch, mutualFundList, isMutualFundDetailsFetching }) => {
 
   const  history  = useHistory();
 
@@ -20,13 +18,12 @@ const MutualFundsList = ({ fetchMutualFundsStartDispatch, mutualFundList }) => {
     fetchMutualFundsStartDispatch();
   }, []);
 
-  console.log('list: ', mutualFundList);
-
   return (
     <div className="mf-list-container">
-        <img className='mf-image' src={mfImage}/>
+      <img className='mf-image' src={mfImage} />
+      {isMutualFundDetailsFetching && <Spinner />}
       {
-        mutualFundList && 
+        !isMutualFundDetailsFetching && mutualFundList && 
         <form className='mf-list-scrolldown'>
           <label htmlFor="mutual-fund" className='mf-list-label'>Choose a mutualfund:</label>
           <select id="mutual-fund" name="mutual-fund">
@@ -47,7 +44,8 @@ const MutualFundsList = ({ fetchMutualFundsStartDispatch, mutualFundList }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  mutualFundList: selectMutualFundList
+  mutualFundList: selectMutualFundList,
+  isMutualFundDetailsFetching: selectIsMutualFundDetailsFetching
 });
 
 const mapDispatchToProps = dispatch => ({

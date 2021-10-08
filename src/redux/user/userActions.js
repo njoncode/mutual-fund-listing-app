@@ -42,3 +42,7 @@ export const signOutFailureAction = error => ({
     type: userConstants.SIGN_OUT_FAILURE,
     payload: error
 });
+
+export const clearSuccessFailureAction = () => ({
+    type: userConstants.CLEAR_SUCCESS_FAILURE,
+});

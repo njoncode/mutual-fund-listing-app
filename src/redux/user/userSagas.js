@@ -31,7 +31,9 @@ export function* signIn({ payload }) {
             yield put(signInSuccessAction(payload));
             yield put(push('/'));     
         }
-        else yield put(signInFailureAction('Invalid email or password'));
+        else {
+            yield put(signInFailureAction('Failed! Invalid email or password'));
+        }
     } catch (error) {
         yield put(signInFailureAction(error));
     }

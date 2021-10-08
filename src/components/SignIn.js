@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import '../styles/signIn.scss';
 
 import { signInStartAction } from '../redux/user/userActions';
+import { selectIsLoading } from '../redux/user/userSelectors';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 
@@ -14,6 +16,7 @@ const SignIn = ({ emailSignInStartDispatch }) => {
         password: ''
     });
 
+    
     const { email, password } = userCredentials;
 
     const handleOnChange = event => {
@@ -60,8 +63,12 @@ const SignIn = ({ emailSignInStartDispatch }) => {
     )
 };
 
+const mapStateToProps = createStructuredSelector({
+    isLoading: selectIsLoading,
+  });
+
 const mapDispatchToProps = dispatch => ({
     emailSignInStartDispatch: (email, password) => dispatch(signInStartAction({ email, password }))
 })
 
-export default connect(null, mapDispatchToProps)(SignIn); 
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn); 

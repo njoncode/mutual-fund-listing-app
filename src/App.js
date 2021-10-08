@@ -13,14 +13,14 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
-      <Router history={history}>
-        <Switch>
-          <Route exact path='/' component={MutualFundsListing}/>
-          <Route path='/mf/:schemeCode' component={MutualFundDetails}/>
-          <Route path='/sign-in' component={SignInAndSignUp} />
-        </Switch>
-      </Router>
+        <Header />
+        <Router history={history}>
+          <Switch>
+            <Route exact path='/' component={MutualFundsListing}/>
+            <Route path='/mf/:schemeCode' component={MutualFundDetails}/>
+            <Route path='/sign-in' component={SignInAndSignUp} />
+          </Switch>
+        </Router>
     </div>
   );
 };

@@ -8,6 +8,7 @@ const userConstants = {
     SIGN_OUT_START: 'SIGN_OUT_START',
     SIGN_OUT_SUCCESS: 'SIGN_OUT_SUCCESS',
     SIGN_OUT_FAILURE: 'SIGN_OUT_FAILURE',
+    CLEAR_SUCCESS_FAILURE: 'CLEAR_SUCCESS_FAILURE'
 };
 
 export default userConstants;

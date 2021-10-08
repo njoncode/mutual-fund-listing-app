@@ -8,12 +8,14 @@ import './index.css';
 
 import { persistor, store }  from './redux/store';
 import history from './utils/history';
+import { ToastProvider } from 'react-toast-notifications';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <ToastProvider style={{ zIndex: '9999999' }}>
     <Provider store={store}>
     <ConnectedRouter history={history}>
         <PersistGate persistor={persistor}>
@@ -21,6 +23,7 @@ ReactDOM.render(
         </PersistGate>
       </ConnectedRouter>
     </Provider>
+    </ToastProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -5,17 +5,17 @@ import { useHistory, useRouteMatch } from 'react-router';
 
 import '../styles/mutualFundDetailsOverview.scss';
 
-import { selectMutualFundList } from '../redux/mutualFund/mutualFundSelectors';
+import { selectMutualFundList, selectIsMutualFundDetailsFetching } from '../redux/mutualFund/mutualFundSelectors';
 import CustomButton from './CustomButton';
 
-const MutualFundDetailsOverview = ({ mutualFundList }) => {
+const MutualFundDetailsOverview = ({ mutualFundList, isMutualFundDetailsFetching }) => {
 
     const  history  = useHistory();
     let match = useRouteMatch();
 
   return (
       <>
-    { mutualFundList && 
+    { !isMutualFundDetailsFetching && mutualFundList && 
         <div className='mf-overview-container'>
           <p className='mf-heading'>Mutual Funds</p>
           <div className='mf-overview-content-container'>
@@ -39,7 +39,8 @@ const MutualFundDetailsOverview = ({ mutualFundList }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    mutualFundList: selectMutualFundList
+    mutualFundList: selectMutualFundList,
+    isMutualFundDetailsFetching: selectIsMutualFundDetailsFetching
   });
 
 export default connect(mapStateToProps)(MutualFundDetailsOverview);
