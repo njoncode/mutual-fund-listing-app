@@ -13,17 +13,25 @@
   }
 
   .header-right-content {
-    width: 100px;
+    width: 110px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .link-sign-in {
-    color: white;
+  .btn-sign-in,
+  .btn-sign-out {
+    color: black;
+    border: none;
+    border-radius: 5px;
+    width: 60px;
+    height: 25px;
+    font-weight: 700;
 
     &:hover {
-      color: pink;
+      background: #abe2e2;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgb(58, 179, 179), -2px -2px 4px rgb(58, 179, 179);
     }
   }
 

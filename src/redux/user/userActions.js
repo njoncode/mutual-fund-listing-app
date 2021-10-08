@@ -30,4 +30,15 @@ export const signInFailureAction = error => ({
     payload: error
 });
 
+export const signOutStartAction = () => ({
+    type: userConstants.SIGN_OUT_START,
+});
 
+export const signOutSuccessAction = () => ({
+    type: userConstants.SIGN_OUT_SUCCESS,
+});
+
+export const signOutFailureAction = error => ({
+    type: userConstants.SIGN_OUT_FAILURE,
+    payload: error
+});
