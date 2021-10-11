@@ -3,15 +3,15 @@ import React from 'react';
 import { useParams } from "react-router-dom"
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import {Tabs, Tab, Col, Row}  from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 
 import '../styles/editProfile.scss';
+
+import UserImage from '../images/user.png'
 
 import { editUserStartAction, editUserPasswordStartAction } from '../redux/user/userActions';
 import { selectCurrentUser, selectUsersData } from '../redux/user/userSelectors';
 
-const EditProfile = ({ currentUser, usersData, editUserStartDispatch, editUserPasswordStartDispatch }) => {
+const EditProfile = ({ currentUser, editUserStartDispatch, editUserPasswordStartDispatch }) => {
 
     const [editUserProfileData, setEditUserProfileData] = React.useState(currentUser);
 
@@ -32,16 +32,13 @@ const EditProfile = ({ currentUser, usersData, editUserStartDispatch, editUserPa
 
    const handleEditPersonalDetailsSubmit = (e) => {
         e.preventDefault();
-        const { name, value } = e.target;
         editUserStartDispatch(editUserProfileData);
    };
 
    const handlePasswordSubmit = (e) => {
         e.preventDefault();
 
-        const { name, value } = e.target;
-
-            if (currentPassword !== currentUser.password) {
+            if (currentPassword !== password) {
                 alert('Invalid Password. Try Again');
             } else if (newPassword !== confirmNewPassword) {
                 alert('Passwords do not match');
@@ -61,7 +58,7 @@ const EditProfile = ({ currentUser, usersData, editUserStartDispatch, editUserPa
 
                     <div className="col-md-3 border-right">
                         <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                            <img className="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
+                            <img className="rounded-circle mt-5" width="150px" src={UserImage}/>
                             <span className="font-weight-bold">{displayName}</span>
                             <span className="text-black-50">{email}</span>
                         </div>
