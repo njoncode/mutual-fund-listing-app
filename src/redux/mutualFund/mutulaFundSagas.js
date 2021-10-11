@@ -9,7 +9,7 @@ import { fetchMutualFundsListSuccessAction, fetchMutualFundsFailureAction, fetch
 export function* fetchMutualFundsListAsync() {
     try {
         const mutualFundsListMap = yield call(fetchMfList);
-        yield put(fetchMutualFundsListSuccessAction(mutualFundsListMap.slice(0, 20)));
+        yield put(fetchMutualFundsListSuccessAction(mutualFundsListMap.slice(0, 100)));
     } catch (error) {
         yield put(fetchMutualFundsFailureAction(error.message));
     }
