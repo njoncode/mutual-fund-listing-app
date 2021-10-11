@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call, select } from 'redux-saga/effects';
+import { takeLatest, put, all, call, select, delay } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import userConstants from './userConstants';
@@ -10,6 +10,7 @@ import { selectUsersData } from './userSelectors';
 export function* signUp({ payload }) {
     try {
         const users = yield select(selectUsersData);
+        console.log('users: ', users)
         if(!users.length) {
             yield put(signUpSuccessAction(payload));  
         }
@@ -34,11 +35,13 @@ export function* signIn({ payload }) {
         if (usersData.length) {
             const validUser = usersData.filter(({ email, password }) => (email === payload.email && password === payload.password));
             if (validUser.length) {
+                yield delay(2000);
                 yield put(signInSuccessAction(validUser[0]));
                 yield put(push('/'));     
             } else yield put(signInFailureAction('Failed! Invalid email or password'));
         }
         else {
+            yield delay(2000);
             yield put(signInFailureAction('Failed! Invalid email or password'));
         }
     } catch (error) {

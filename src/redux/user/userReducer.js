@@ -6,7 +6,7 @@ const INTITAL_STATE = {
     usersData: [],
     currentUser: null,
     error: null,
-    isLoading: true,
+    isLoading: false,
 };
 
 const userReducer = (state = INTITAL_STATE, action) => {
@@ -28,6 +28,12 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 ...state,
                 error: action.payload,
                 isLoading: false
+            };
+        case userConstants.SIGN_IN_START:
+            return { 
+                ...state,
+                error: null,
+                isLoading: true,
             };
         case userConstants.SIGN_IN_SUCCESS:
         return { 

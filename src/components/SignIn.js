@@ -8,15 +8,15 @@ import { signInStartAction } from '../redux/user/userActions';
 import { selectIsLoading } from '../redux/user/userSelectors';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
+import Loader from './Loader';
 
-const SignIn = ({ emailSignInStartDispatch }) => {
+const SignIn = ({ emailSignInStartDispatch, isLoading }) => {
    
     const [userCredentials, setCredentials] = useState({ 
         email: '', 
         password: ''
     });
 
-    
     const { email, password } = userCredentials;
 
     const handleOnChange = event => {
@@ -30,7 +30,6 @@ const SignIn = ({ emailSignInStartDispatch }) => {
         event.preventDefault();
 
         emailSignInStartDispatch(email, password)
-       
     };
 
     return (
@@ -56,7 +55,7 @@ const SignIn = ({ emailSignInStartDispatch }) => {
                 required 
             />
             <div className='buttons'>
-                <CustomButton type='submit'>Sign in</CustomButton >
+                <CustomButton type='submit'>{isLoading ? <Loader text='Signing In'/> : 'Sign in'}</CustomButton >
             </div>¯
         </form>
     </div>
