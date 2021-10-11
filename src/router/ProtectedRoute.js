@@ -7,14 +7,9 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../redux/user/userSelectors';
 
 const ProtectedRoute = ({ component: Component, currentUser, ...rest }) => {
-  console.log('ProtectedRoute!!!!!')
-  console.log('rest: ', rest)
-
-  console.log('ProtectedRoute currentUser: ', currentUser);
-
+ 
   return (
     <Route {...rest} render={ (props) => {
-      console.log('props: ', props)
         if (currentUser) {
           return <Component {...rest} {...props} />;
         }

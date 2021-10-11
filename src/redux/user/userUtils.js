@@ -1,8 +1,6 @@
 export const editUsersData = (editedUserData, currentUser, usersData) => {
     return usersData.map(userData => {
-        console.log('editedUserData: ', editedUserData)
         if(userData.email === currentUser.email) {
-            console.log('if editedUserData: ', editedUserData)
             return editedUserData
         } else {
             return userData

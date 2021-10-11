@@ -7,12 +7,12 @@ import { createStructuredSelector } from 'reselect';
 import '../styles/editProfile.scss';
 
 import UserImage from '../images/user.png'
-
 import { editUserStartAction, editUserPasswordStartAction } from '../redux/user/userActions';
-import { selectCurrentUser, selectUsersData } from '../redux/user/userSelectors';
+import { selectCurrentUser, selectUsersData, selectIsLoading, selectIsSuccess, selectFailureMessage } from '../redux/user/userSelectors';
 
-const EditProfile = ({ currentUser, editUserStartDispatch, editUserPasswordStartDispatch }) => {
+const EditProfile = ({ currentUser, editUserStartDispatch, editUserPasswordStartDispatch, isSuccess, failureMessage }) => {
 
+   
     const [editUserProfileData, setEditUserProfileData] = React.useState(currentUser);
 
     const [editUserPassword, setEditUserPassword] = React.useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
@@ -135,7 +135,9 @@ const EditProfile = ({ currentUser, editUserStartDispatch, editUserPasswordStart
 
 const mapStatetoProps = createStructuredSelector({
     currentUser: selectCurrentUser,
-    usersData: selectUsersData
+    usersData: selectUsersData,
+    isSuccess: selectIsSuccess,
+    failureMessage: selectFailureMessage
   });
 
 const mapDispatchToProps = dispatch => ({

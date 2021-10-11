@@ -13,8 +13,6 @@ import ProfileDropdown from './ProfileDropdown';
 
 const Header = ({ currentUser, signOutStartDispatch, profileDropdownHiddenDispatch, isProfileDropdownHidden }) => {
 
-  console.log('currentUser: ', currentUser)
-
   return (
     <div className="header-container">
       <img className='mf-image' src={mfImage} alt='mutual-find-logo'/>

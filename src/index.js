@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
+import { ToastProvider } from 'react-toast-notifications';
 
 import './index.css';
 
 import { persistor, store }  from './redux/store';
 import history from './utils/history';
-import { ToastProvider } from 'react-toast-notifications';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';

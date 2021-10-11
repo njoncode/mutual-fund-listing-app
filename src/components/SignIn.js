@@ -1,17 +1,37 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { useToasts } from 'react-toast-notifications';
 
 import '../styles/signIn.scss';
 
 import { signInStartAction } from '../redux/user/userActions';
-import { selectIsLoading } from '../redux/user/userSelectors';
+import { selectIsLoading, selectIsSuccess, selectFailureMessage } from '../redux/user/userSelectors';
 import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 import Loader from './Loader';
 
-const SignIn = ({ emailSignInStartDispatch, isLoading }) => {
+
+const SignIn = ({ emailSignInStartDispatch, isLoading, isSuccess, failureMessage }) => {
    
+    const { addToast } = useToasts();
+
+    React.useEffect(() => {
+        if (isSuccess) {
+          addToast('Welcome to dashboard!', {
+            appearance: 'success',
+            autoDismiss: true,
+          });
+        }
+        if (failureMessage && failureMessage.length > 0) {
+          addToast(failureMessage, {
+            appearance: 'error',
+            autoDismiss: true,
+          });
+        }
+      }, [isSuccess, failureMessage]);
+
+      
     const [userCredentials, setCredentials] = useState({ 
         email: '', 
         password: ''
@@ -64,6 +84,8 @@ const SignIn = ({ emailSignInStartDispatch, isLoading }) => {
 
 const mapStateToProps = createStructuredSelector({
     isLoading: selectIsLoading,
+    isSuccess: selectIsSuccess,
+    failureMessage: selectFailureMessage
   });
 
 const mapDispatchToProps = dispatch => ({

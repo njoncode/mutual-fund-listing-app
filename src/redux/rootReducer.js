@@ -10,7 +10,7 @@ import history from '../utils/history';
 import mutualFundReducer from './mutualFund/mutualFundReducer';
 import userReducer from './user/userReducer';
 
-const saveUserLoginSubsetFilter = createFilter('user', ['usersData', 'currentUser']);
+const saveUserLoginSubsetFilter = createFilter('user', ['usersData', 'currentUser', 'failureMessage']);
 
 
 const persistConfig = {

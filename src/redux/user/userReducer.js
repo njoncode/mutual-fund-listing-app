@@ -7,6 +7,8 @@ const INTITAL_STATE = {
     currentUser: null,
     error: null,
     isLoading: false,
+    isSuccess: false,
+    failureMessgae: ''
 };
 
 const userReducer = (state = INTITAL_STATE, action) => {
@@ -18,6 +20,7 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 usersData: [...state.usersData, action.payload],
                 error: null,
                 isLoading: false,
+                isSuccess: true
             };
         case userConstants.SIGN_UP_FAILURE:
         case userConstants.SIGN_IN_FAILURE:
@@ -27,7 +30,8 @@ const userReducer = (state = INTITAL_STATE, action) => {
             return { 
                 ...state,
                 error: action.payload,
-                isLoading: false
+                isLoading: false,
+                failureMessage: action.payload
             };
         case userConstants.SIGN_IN_START:
             return { 
@@ -41,6 +45,7 @@ const userReducer = (state = INTITAL_STATE, action) => {
             currentUser: action.payload,
             error: null,
             isLoading: false,
+            isSuccess: true
         };
         case userConstants.SIGN_OUT_SUCCESS:
             return { 
@@ -48,6 +53,7 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 currentUser: null,
                 error: null,
                 isLoading: false,
+                isSuccess: true
             };
         case userConstants.TOGGLE_PROFILE_DROPDOWN_HIDDEN:
             return { 
@@ -61,6 +67,7 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 usersData: editUsersData(action.payload, state.currentUser, state.usersData),
                 error: null,
                 isLoading: false,
+                isSuccess: true
             };
 
         case userConstants.EDIT_USER_PASSWORD_SUCCESS:
@@ -70,8 +77,15 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 usersData: editUserPassword(action.payload, state.currentUser, state.usersData),
                 error: null,
                 isLoading: false,
+                isSuccess: true
+            }; 
+        case userConstants.CLEAR_SUCCESS_FAILURE:
+            return { 
+                ...state,
+                isSuccess: false,
+                failureMessage: ''
             };
-
+            
         default:
             return state;
     }
