@@ -6,11 +6,14 @@ import { createStructuredSelector } from 'reselect';
 
 import '../styles/header.scss';
 
-import { signOutStartAction } from '../redux/user/userActions';
-import { selectCurrentUser } from '../redux/user/userSelectors';
+import { signOutStartAction, toggleProfileDropdownHiddenAction } from '../redux/user/userActions';
+import { selectCurrentUser, selectProfileDropdownHidden } from '../redux/user/userSelectors';
 import mfImage from '../images/mutual-fund.png';
+import ProfileDropdown from './ProfileDropdown';
 
-const Header = ({ currentUser, signOutStartDispatch }) => {
+const Header = ({ currentUser, signOutStartDispatch, profileDropdownHiddenDispatch, isProfileDropdownHidden }) => {
+
+  console.log('currentUser: ', currentUser)
 
   return (
     <div className="header-container">
@@ -19,8 +22,9 @@ const Header = ({ currentUser, signOutStartDispatch }) => {
          ? <Link to='/sign-in'><button className='btn-sign-in'>SignIn</button></Link>
          : (
               <div className='header-right-content'>
-                 <Gravatar email='' size={40}/>
-                 <button className='btn-sign-out' onClick={signOutStartDispatch}>SignOut</button>
+                 {/* <Gravatar email={currentUser.email} size={40} onClick={() => profileDropdownHiddenDispatch()}/> */}
+                 {/* <button className='btn-sign-out' onClick={signOutStartDispatch}>SignOut</button> */}
+                 {isProfileDropdownHidden ? null : <ProfileDropdown />}
               </div>
             )
         }
@@ -30,10 +34,12 @@ const Header = ({ currentUser, signOutStartDispatch }) => {
 
 const mapStatetoProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isProfileDropdownHidden: selectProfileDropdownHidden
 });
 
 const mapDispatchToProps = dispatch => ({
-  signOutStartDispatch: () => dispatch(signOutStartAction())
+  signOutStartDispatch: () => dispatch(signOutStartAction()),
+  profileDropdownHiddenDispatch: () => dispatch(toggleProfileDropdownHiddenAction())
 })
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Header);

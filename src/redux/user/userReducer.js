@@ -1,6 +1,8 @@
 import userConstants from "./userConstants";
+import { editUsersData, editUserPassword } from './userUtils';
 
 const INTITAL_STATE = {
+    isProfileDropdownHidden: false,
     usersData: [],
     currentUser: null,
     error: null,
@@ -20,6 +22,8 @@ const userReducer = (state = INTITAL_STATE, action) => {
         case userConstants.SIGN_UP_FAILURE:
         case userConstants.SIGN_IN_FAILURE:
         case userConstants.SIGN_OUT_FAILURE:
+        case userConstants.EDIT_USER_FAILURE:
+        case userConstants.EDIT_USER_PASSWORD_FAILURE:
             return { 
                 ...state,
                 error: action.payload,
@@ -39,6 +43,29 @@ const userReducer = (state = INTITAL_STATE, action) => {
                 error: null,
                 isLoading: false,
             };
+        case userConstants.TOGGLE_PROFILE_DROPDOWN_HIDDEN:
+            return { 
+                ...state,
+                isProfileDropdownHidden: !state.isProfileDropdownHidden
+            };
+        case userConstants.EDIT_USER_SUCCESS:
+            return { 
+                ...state,
+                currentUser: action.payload,
+                usersData: editUsersData(action.payload, state.currentUser, state.usersData),
+                error: null,
+                isLoading: false,
+            };
+
+        case userConstants.EDIT_USER_PASSWORD_SUCCESS:
+            return { 
+                ...state,
+                currentUser: {...state.currentUser, password: action.payload},
+                usersData: editUserPassword(action.payload, state.currentUser, state.usersData),
+                error: null,
+                isLoading: false,
+            };
+
         default:
             return state;
     }

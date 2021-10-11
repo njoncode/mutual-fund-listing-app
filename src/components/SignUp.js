@@ -9,6 +9,14 @@ import FormInput from './FormInput';
 import CustomButton from './CustomButton';
 
 
+function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    
+
+
 const SignUp = ({ signUpStartDispatch }) => {
 
     const [userCredentials, setCredentials] = useState({ 
@@ -28,7 +36,14 @@ const SignUp = ({ signUpStartDispatch }) => {
 
     const handleSubmit = async e => {
         e.preventDefault() ;
-    
+
+        const checkEmail = validateEmail(email);
+        
+        if(!checkEmail) {
+            alert('Invalid Email Address!');
+            return;
+        }
+
         if(password !== confirmPassword) {
             alert('Passwords do not match')
             return;

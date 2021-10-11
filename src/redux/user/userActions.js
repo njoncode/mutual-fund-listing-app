@@ -46,3 +46,39 @@ export const signOutFailureAction = error => ({
 export const clearSuccessFailureAction = () => ({
     type: userConstants.CLEAR_SUCCESS_FAILURE,
 });
+
+export const toggleProfileDropdownHiddenAction = () => ({
+    type: userConstants.TOGGLE_PROFILE_DROPDOWN_HIDDEN
+});
+
+
+
+export const editUserStartAction = userCredentials => ({
+    type: userConstants.EDIT_USER_START,
+    payload: userCredentials
+});
+
+export const editUserSuccessAction = (payload) => ({
+    type: userConstants.EDIT_USER_SUCCESS,
+    payload
+});
+
+export const editUserFailureAction = error => ({
+    type: userConstants.EDIT_USER_FAILURE,
+    payload: error
+});
+
+export const editUserPasswordStartAction = password => ({
+    type: userConstants.EDIT_USER_PASSWORD_START,
+    payload: password
+});
+
+export const editUserPasswordSuccessAction = password => ({
+    type: userConstants.EDIT_USER_PASSWORD_SUCCESS,
+    payload: password
+});
+
+export const editUserPasswordFailureAction = password => ({
+    type: userConstants.EDIT_USER_PASSWORD_FAILURE,
+    payload: password
+});

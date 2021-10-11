@@ -27,3 +27,9 @@ export const selectFailureMessage = createSelector(
    (user) => user.failureMessage
 );
 
+export const selectProfileDropdownHidden = createSelector(
+   [selectUser],
+   (user) => user.isProfileDropdownHidden 
+);
+
+
