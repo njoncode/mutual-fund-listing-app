@@ -11,17 +11,15 @@ import { selectCurrentUser, selectProfileDropdownHidden } from '../redux/user/us
 import mfImage from '../images/mutual-fund.png';
 import ProfileDropdown from './ProfileDropdown';
 
-const Header = ({ currentUser, signOutStartDispatch, profileDropdownHiddenDispatch, isProfileDropdownHidden }) => {
+const Header = ({ currentUser, isProfileDropdownHidden }) => {
 
   return (
     <div className="header-container">
-      <img className='mf-image' src={mfImage} alt='mutual-find-logo'/>
+      <Link to='/'><img className='mf-image' src={mfImage} alt='mutual-find-logo'/></Link>
         { !currentUser 
          ? <Link to='/sign-in'><button className='btn-sign-in'>SignIn</button></Link>
          : (
               <div className='header-right-content'>
-                 {/* <Gravatar email={currentUser.email} size={40} onClick={() => profileDropdownHiddenDispatch()}/> */}
-                 {/* <button className='btn-sign-out' onClick={signOutStartDispatch}>SignOut</button> */}
                  {isProfileDropdownHidden ? null : <ProfileDropdown />}
               </div>
             )
@@ -38,6 +36,6 @@ const mapStatetoProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   signOutStartDispatch: () => dispatch(signOutStartAction()),
   profileDropdownHiddenDispatch: () => dispatch(toggleProfileDropdownHiddenAction())
-})
+});
 
 export default connect(mapStatetoProps, mapDispatchToProps)(Header);

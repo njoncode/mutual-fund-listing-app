@@ -13,6 +13,7 @@ export function* signUp({ payload }) {
         if(!users.length) {
             yield put(signUpSuccessAction(payload));  
             yield put(clearSuccessFailureAction());
+            yield put(push('/')); 
         }
         else {
             const doesUserExist = users.filter(({ email }) => email === payload.email);
